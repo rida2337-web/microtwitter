@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroTwitter - Réseau Social Moderne</title>
+    <link rel="stylesheet" href="twi.css">
+</head>
+<body>
+    <header>
+        <div class="profile-trigger">
+        <img src="URL_DE_TA_PP" alt="Profile" id="profile-bubble" class="profile-bubble">
+    </div>
+        <div class="logo">Som1</div>
+        <nav>
+    
+            <button id="show-feed" class="nav-btn active" onclick="showFeed()">Fil d’actualité</button>
+            <button id="show-profile" class="nav-btn" onclick="showProfile()">Profil</button>
+        </nav>
+        <button id="toggle-dark" class="nav-btn" onclick="toggleDarkMode()" title="Mode nuit">🌙</button>
+    </header>
+    <main id="main-content">
+        <!-- Feed loaded dynamically -->
+    </main>
+    <footer>
+        <p>&copy; 2026 MicroTwitter. Créé par rida2337-web.</p>
+    </footer>
+    <script src="scripttt.js"></script>
+    <aside class="side-menu hidden-menu" id="drawer-menu">
+    <div class="menu-logo">
+        
+    </div>
+   <audio id="introMusic" src="level-up-08-402152.mp3" preload="auto"></audio>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const music = document.getElementById('introMusic');
+
+  // Lire une seule fois dès que l'utilisateur entre sur le site.
+  // On tente une lecture automatique si possible, sinon on attend le premier clic.
+  const playOnce = async () => {
+    try {
+      // Autoriser le son si le navigateur le permet
+      music.muted = false;
+      const canPlay = await music.play();
+      // `play()` retourne une promesse résolue lorsque la lecture démarre
+      // Dès que la musique se termine, elle ne se relance pas.
+      // Ajouter un écouteur pour s'assurer qu'elle ne se répète pas
+      music.onended = () => {
+        // Optionnel: enlever la source pour libérer la mémoire
+        // music.src = "";
+      };
+      return canPlay;
+    } catch (e) {
+      // Lecture bloquée: prévenir l'utilisateur ou demander une interaction
+      console.log("Lecture automatique bloquée, nécessite une interaction");
+      return null;
+    }
+  };
+
+  // Tenter de lire automatiquement au chargement
+  playOnce();
+
+  // En complément, vous pouvez aussi démarrer après le premier clic si la lecture automatique échoue
+  document.body.addEventListener('click', async () => {
+    // Si la musique est déjà en cours ou prête, ne pas relancer
+    if (!music.paused) return;
+    await playOnce();
+  }, { once: true });
+});
+</script>
+    <nav class="menu-nav">
+        <button class="menu-item" onclick="showProfile()">
+            <span>👤</span> Profil
+        </button>
+        <button class="menu-item" onclick="showVideos()">
+            <span>🎥</span> Vidéo
+        </button>
+        <button class="menu-item" onclick="showChat()">
+            <span>💬</span> Chat
+        </button>
+        <button class="menu-item" onclick="showCommunities()">
+            <span>👥</span> Communautés
+        </button>
+        <button class="menu-item" onclick="showBookmarks()">
+            <span>🔖</span> Signets
+        </button>
+        <button class="menu-item" onclick="showLists()">
+            <span>📋</span> Listes
+        </button>
+        <button class="menu-item" onclick="showSpaces()">
+            <span>🛰️</span> Spaces
+        </button>
+        <!-- Dans ton index.html par exemple -->
+
+            <button class="menu-item" onclick="showLists()">
+            <span>💰</span> Monétisation
+        </button>
+    </nav>
+</aside>
+</body>
+</html>
